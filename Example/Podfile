@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'SwiftCSVStream_Example', :exclusive => true do
+  pod 'SwiftCSVStream', :path => '../'
+end
+
+target 'SwiftCSVStream_Tests', :exclusive => true do
+  pod 'SwiftCSVStream', :path => '../'
+
+  
+end
