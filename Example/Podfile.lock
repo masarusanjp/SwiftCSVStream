@@ -1,0 +1,14 @@
+PODS:
+  - SwiftCSVStream (0.1.0)
+
+DEPENDENCIES:
+  - SwiftCSVStream (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftCSVStream:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SwiftCSVStream: 9004a11d085ca1139188284c03dd365af4d68db4
+
+COCOAPODS: 0.39.0
