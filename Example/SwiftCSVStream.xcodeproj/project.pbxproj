@@ -15,6 +15,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		72B32E8060E024B1BC2C91E2 /* Pods_SwiftCSVStream_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF44D85C03CD1CBFC312250 /* Pods_SwiftCSVStream_Tests.framework */; };
+		7D8F3D5A1C74A9980019219F /* test01.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F3D591C74A9980019219F /* test01.csv */; };
+		7D8F3D5B1C74AC050019219F /* test01.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F3D591C74A9980019219F /* test01.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,7 @@
 		607FACE51AFB9204008FA782 /* SwiftCSVStream_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVStream_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		7D8F3D591C74A9980019219F /* test01.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test01.csv; sourceTree = "<group>"; };
 		90A46975FE0B7215EFAE065F /* Pods-SwiftCSVStream_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCSVStream_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCSVStream_Tests/Pods-SwiftCSVStream_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C298D61E2FE0291AC79F38C4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		CACDF70F6050366E38894735 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				7D8F3D591C74A9980019219F /* test01.csv */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -247,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				7D8F3D5A1C74A9980019219F /* test01.csv in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -256,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D8F3D5B1C74AC050019219F /* test01.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,7 +46,7 @@ public class CSV {
                 throw CSVError.IOFail
             }
             
-            var range = buffer.rangeOfData(lineDelimiterData,options: NSDataSearchOptions.Backwards, range: NSRange(location: 0, length: buffer.length))
+            var range = buffer.rangeOfData(lineDelimiterData,options: NSDataSearchOptions(rawValue: 0), range: NSRange(location: 0, length: buffer.length))
             
             while range.location == NSNotFound {
                 let data = fileHandle.readDataOfLength(chunkSize)
