@@ -28,7 +28,7 @@ class Tests: XCTestCase {
         }
         var numberOfLines = 0
         let expected = [
-            ["d", "b", "c"],
+            ["a", "b", "c"],
             ["d", "e", "f"],
             ["123", "456", "899"],
         ]

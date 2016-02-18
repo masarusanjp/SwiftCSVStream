@@ -46,6 +46,7 @@ public class CSV {
                 throw CSVError.IOFail
             }
             
+            
             var range = buffer.rangeOfData(lineDelimiterData,options: NSDataSearchOptions(rawValue: 0), range: NSRange(location: 0, length: buffer.length))
             
             while range.location == NSNotFound {
@@ -57,14 +58,18 @@ public class CSV {
                         let line = String(data: buffer, encoding: NSUTF8StringEncoding)
                         buffer.length = 0
                         return line
+                    } else {
+                       return nil
                     }
                 }
                 buffer.appendData(data)
-                range = buffer.rangeOfData(lineDelimiterData,options: NSDataSearchOptions.Backwards, range: NSRange(location: 0, length: buffer.length))
+                range = buffer.rangeOfData(lineDelimiterData,options: NSDataSearchOptions(rawValue: 0), range: NSRange(location: 0, length: buffer.length))
+                print(NSStringFromRange(range))
             }
             
             let lineRange = NSRange(location: 0, length: range.location)
             let line = String(data: buffer.subdataWithRange(lineRange), encoding: NSUTF8StringEncoding)
+            
             buffer.replaceBytesInRange(NSMakeRange(0, range.location + range.length), withBytes: nil, length: 0)
             return line
         }
