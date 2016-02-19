@@ -88,5 +88,8 @@ public class CSV {
             }
         }
     }
+     
+     public func each(block: ([String], inout Bool) -> Void) {
+     }
     
 }
