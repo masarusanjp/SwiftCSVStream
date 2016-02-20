@@ -110,22 +110,22 @@ public class CSV {
         
         for c in line.unicodeScalars {
             
-            let context = (String(stringInterpolationSegment: c), state)
+            let characterString = String(stringInterpolationSegment: c)
             
-            switch (context) {
-            case (doubleQuote, .Empty):
+            switch (characterString) {
+            case doubleQuote where state == .Empty:
                 state = .InQuote
-            case (doubleQuote, .InQuote):
+            case doubleQuote where state == .InQuote:
                 state = .Parsing
-            case (doubleQuote, .Parsing):
+            case doubleQuote where state == .Parsing:
                 row.append(c)
-            case (delimiter, .InQuote):
+            case delimiter where state == .InQuote:
                 row.append(c)
-            case (delimiter, _):
+            case delimiter:
                 result.append(row)
                 row = ""
                 state = .Empty
-            case (_, _):
+            default:
                 row.append(c)
             }
         }
