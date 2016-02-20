@@ -64,7 +64,6 @@ public class CSV {
                 }
                 buffer.appendData(data)
                 range = buffer.rangeOfData(lineDelimiterData,options: NSDataSearchOptions(rawValue: 0), range: NSRange(location: 0, length: buffer.length))
-                print(NSStringFromRange(range))
             }
             
             let lineRange = NSRange(location: 0, length: range.location)
@@ -75,21 +74,64 @@ public class CSV {
         }
     }
     
+    private let stream: Stream
+    private let delimiter = ","
+    private let doubleQuote = "\""
     
     public class func foreach(fileHandle: NSFileHandle, firstLineAsHeader: Bool, block: ([String], inout Bool) -> Void) {
-        let stream = Stream(fileHandle: fileHandle)
+        CSV(fileHandle: fileHandle).each(block)
+    }
+    
+    public init(fileHandle: NSFileHandle) {
+        stream = Stream(fileHandle: fileHandle)
+    }
+     
+    public func each(block: ([String], inout Bool) -> Void) {
         for line in stream {
             var stopped: Bool = false
-            // TODO: Handle commas inner double quotes. ex) a, b, "c, c", d
-            let row = line.componentsSeparatedByString(",")
+            let row = parseLine(line)
             block(row, &stopped)
             if (stopped) {
                 break
             }
         }
     }
-     
-     public func each(block: ([String], inout Bool) -> Void) {
-     }
     
+    enum ParseState {
+        case Empty
+        case InQuote
+        case Parsing
+    }
+    
+    func parseLine(line: String) -> [String] {
+        var row: String = ""
+        var result: [String] = []
+        var state: ParseState = .Empty
+        
+        for c in line.unicodeScalars {
+            
+            let context = (String(stringInterpolationSegment: c), state)
+            
+            switch (context) {
+            case (doubleQuote, .Empty):
+                state = .InQuote
+            case (doubleQuote, .InQuote):
+                state = .Parsing
+            case (doubleQuote, .Parsing):
+                row.append(c)
+            case (delimiter, .InQuote):
+                row.append(c)
+            case (delimiter, _):
+                result.append(row)
+                row = ""
+                state = .Empty
+            case (_, _):
+                row.append(c)
+            }
+        }
+        if row.characters.count > 0 {
+            result.append(row)
+        }
+        return result
+    }
 }
