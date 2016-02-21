@@ -20,6 +20,36 @@ it, simply add the following line to your Podfile:
 pod "SwiftCSVStream"
 ```
 
+## Usage
+
+
+### Read from file
+
+```Swift
+
+do {
+    try CSV.foreach(filePath) { (rows, stopped) in
+    }
+} catch {
+
+}
+
+```
+
+
+### Read from NSFileHandle 
+
+```Swift
+
+// STDIN
+CSV.foreach(NSFileHandle.fileHandleWithStandardInput) { (rows, stopped) in
+    if (rows.count == 0) {
+        stopped = true
+    }
+}
+
+```
+
 ## Author
 
 masaichi, masarusanplusplus@gmail.com
