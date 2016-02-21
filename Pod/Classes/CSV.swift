@@ -82,6 +82,17 @@ public class CSV {
         CSV(fileHandle: fileHandle).each(block)
     }
     
+    public class func parse(text: String, block: ([String], inout Bool) -> Void) {
+        for line in text.componentsSeparatedByString("\n") {
+            var stopped: Bool = false
+            let row = CSV.parseLine(line, delimiter: ",", quote: "\"")
+            block(row, &stopped)
+            if (stopped) {
+                break
+            }
+        }
+    }
+    
     public init(fileHandle: NSFileHandle) {
         stream = Stream(fileHandle: fileHandle)
     }
@@ -89,7 +100,7 @@ public class CSV {
     public func each(block: ([String], inout Bool) -> Void) {
         for line in stream {
             var stopped: Bool = false
-            let row = parseLine(line)
+            let row = CSV.parseLine(line, delimiter: delimiter, quote: doubleQuote)
             block(row, &stopped)
             if (stopped) {
                 break
@@ -103,7 +114,7 @@ public class CSV {
         case Parsing
     }
     
-    func parseLine(line: String) -> [String] {
+    static func parseLine(line: String, delimiter:String, quote:String) -> [String] {
         var row: String = ""
         var result: [String] = []
         var state: ParseState = .Empty
@@ -113,11 +124,11 @@ public class CSV {
             let characterString = String(stringInterpolationSegment: c)
             
             switch (characterString) {
-            case doubleQuote where state == .Empty:
+            case quote where state == .Empty:
                 state = .InQuote
-            case doubleQuote where state == .InQuote:
+            case quote where state == .InQuote:
                 state = .Parsing
-            case doubleQuote where state == .Parsing:
+            case quote where state == .Parsing:
                 row.append(c)
             case delimiter where state == .InQuote:
                 row.append(c)
