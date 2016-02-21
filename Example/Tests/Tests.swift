@@ -32,7 +32,7 @@ class Tests: XCTestCase {
             ["d", "e", "f"],
             ["123", "456", "899"],
         ]
-        CSV.foreach(fileHandle, firstLineAsHeader: false) { (rows, stopped) in
+        CSV.foreach(fileHandle) { (rows, stopped) in
             XCTAssertEqual(expected[numberOfLines], rows)
             numberOfLines++
         }
@@ -52,7 +52,7 @@ class Tests: XCTestCase {
         let expected = [
             ["a,b", "b", "c"],
         ]
-        CSV.foreach(fileHandle, firstLineAsHeader: false) { (rows, stopped) in
+        CSV.foreach(fileHandle) { (rows, stopped) in
             XCTAssertEqual(expected[numberOfLines], rows)
             numberOfLines++
         }

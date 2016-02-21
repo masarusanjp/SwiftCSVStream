@@ -4,6 +4,7 @@ public class CSV {
     
     public enum CSVError : ErrorType {
         case IOFail
+        case FileNotFound
     }
     private class Stream : SequenceType {
         class Generator : GeneratorType {
@@ -78,8 +79,16 @@ public class CSV {
     private let delimiter = ","
     private let doubleQuote = "\""
     
-    public class func foreach(fileHandle: NSFileHandle, firstLineAsHeader: Bool, block: ([String], inout Bool) -> Void) {
+    public class func foreach(fileHandle: NSFileHandle, block: ([String], inout Bool) -> Void) {
         CSV(fileHandle: fileHandle).each(block)
+    }
+    
+    public class func foreach(filePath: String, block: ([String], inout Bool) -> Void) throws {
+        if let fileHandle = NSFileHandle(forReadingAtPath: filePath) {
+            foreach(fileHandle, block: block)
+        } else {
+            throw CSVError.FileNotFound
+        }
     }
     
     public class func parse(text: String, block: ([String], inout Bool) -> Void) {
