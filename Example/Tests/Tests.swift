@@ -57,4 +57,23 @@ class Tests: XCTestCase {
             numberOfLines++
         }
     }
+    
+    func testParseQuotedAndContainsReturnFile() {
+        guard let path = bundle.pathForResource("test03.csv", ofType: nil)else  {
+            XCTFail("failed to get path")
+            return
+        }
+        guard let fileHandle = NSFileHandle(forReadingAtPath: path) else {
+            XCTFail("failed to create fileHandle")
+            return
+        }
+        var numberOfLines = 0
+        let expected = [
+            ["a,\nb", "b", "c"],
+        ]
+        CSV.foreach(fileHandle) { (rows, stopped) in
+            XCTAssertEqual(expected[numberOfLines], rows)
+            numberOfLines++
+        }
+    }
 }

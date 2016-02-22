@@ -19,6 +19,8 @@
 		7D1073D31C78997D00378A16 /* test02.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D1073D11C78996100378A16 /* test02.csv */; };
 		7D8F3D5A1C74A9980019219F /* test01.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F3D591C74A9980019219F /* test01.csv */; };
 		7D8F3D5B1C74AC050019219F /* test01.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F3D591C74A9980019219F /* test01.csv */; };
+		7D9A034A1C7B559800261440 /* test03.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D9A03491C7B559800261440 /* test03.csv */; };
+		7D9A034B1C7B580100261440 /* test03.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7D9A03491C7B559800261440 /* test03.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7D1073D11C78996100378A16 /* test02.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test02.csv; sourceTree = "<group>"; };
 		7D8F3D591C74A9980019219F /* test01.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test01.csv; sourceTree = "<group>"; };
+		7D9A03491C7B559800261440 /* test03.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test03.csv; sourceTree = "<group>"; };
 		90A46975FE0B7215EFAE065F /* Pods-SwiftCSVStream_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftCSVStream_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftCSVStream_Tests/Pods-SwiftCSVStream_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C298D61E2FE0291AC79F38C4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		CACDF70F6050366E38894735 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 			children = (
 				7D8F3D591C74A9980019219F /* test01.csv */,
 				7D1073D11C78996100378A16 /* test02.csv */,
+				7D9A03491C7B559800261440 /* test03.csv */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -259,6 +263,7 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				7D1073D21C78996100378A16 /* test02.csv in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				7D9A034A1C7B559800261440 /* test03.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +273,7 @@
 			files = (
 				7D1073D31C78997D00378A16 /* test02.csv in Resources */,
 				7D8F3D5B1C74AC050019219F /* test01.csv in Resources */,
+				7D9A034B1C7B580100261440 /* test03.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

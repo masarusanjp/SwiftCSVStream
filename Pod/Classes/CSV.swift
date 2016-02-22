@@ -6,7 +6,7 @@ public class CSV {
         case IOFail
         case FileNotFound
     }
-    private class Stream : SequenceType {
+    class Stream : SequenceType {
         class Generator : GeneratorType {
             let stream: Stream
             init(stream: Stream) {
@@ -46,7 +46,6 @@ public class CSV {
             guard let lineDelimiterData = lineDelimiterData else {
                 throw CSVError.IOFail
             }
-            
             
             var range = buffer.rangeOfData(lineDelimiterData,options: NSDataSearchOptions(rawValue: 0), range: NSRange(location: 0, length: buffer.length))
             
@@ -107,10 +106,15 @@ public class CSV {
     }
      
     public func each(block: ([String], inout Bool) -> Void) {
-        for line in stream {
+        let generator = stream.generate()
+        while (true) {
             var stopped: Bool = false
-            let row = CSV.parseLine(line, delimiter: delimiter, quote: doubleQuote)
-            block(row, &stopped)
+            if let row = CSV.parseRow(generator, delimiter: delimiter, quote: doubleQuote) {
+                block(row, &stopped)
+            }
+            if (stream.eof) {
+                break
+            }
             if (stopped) {
                 break
             }
@@ -121,6 +125,52 @@ public class CSV {
         case Empty
         case InQuote
         case Parsing
+    }
+
+    static func parseRow(generator: Stream.Generator, delimiter:String, quote:String) -> [String]? {
+        var row: String = ""
+        var result: [String] = []
+        var state: ParseState = .Empty
+        
+        while(true) {
+            guard let line = generator.next() else {
+                if row.characters.count > 0 {
+                    result.append(row)
+                } else if (result.count == 0) {
+                    return nil
+                }
+                break
+            }
+            for c in line.unicodeScalars {
+                let characterString = String(stringInterpolationSegment: c)
+                
+                switch (characterString) {
+                case quote where state == .Empty:
+                    state = .InQuote
+                case quote where state == .InQuote:
+                    state = .Parsing
+                case quote where state == .Parsing:
+                    row.append(c)
+                case delimiter where state == .InQuote:
+                    row.append(c)
+                case delimiter:
+                    result.append(row)
+                    row = ""
+                    state = .Empty
+                default:
+                    row.append(c)
+                }
+            }
+            if (state != .InQuote) {
+                if row.characters.count > 0 {
+                    result.append(row)
+                }
+                break
+            } else {
+                row.appendContentsOf("\n")
+            }
+        }
+        return result
     }
     
     static func parseLine(line: String, delimiter:String, quote:String) -> [String] {
